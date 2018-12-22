@@ -15,4 +15,24 @@ router.get('/:id', function(req, res, next){
     })
 });
 
+router.post('/newProject', function(req, res, next){
+    projects.newProject(req.body).then(data=>{
+        console.log(req.body)
+        res.json(data)
+    })
+});
+
+router.put('/updateProject', function(req, res, next){
+    projects.updateProject(req.body).then(data=>{
+        console.log(req.body)
+        res.json(data)
+    })
+})
+
+router.delete('/deleteProject', function(req, res, next){
+    projects.deleteProject(req.body).then(data=>{
+        console.log(req.body)
+        res.json(data)
+    })
+})
 module.exports = router;

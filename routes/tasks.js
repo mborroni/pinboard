@@ -5,7 +5,7 @@ var tasks = new tasksModel();
 
 router.get('/', function(req, res, next){
     tasks.getAllTasks().then(data=>{
-        res.json(data);
+        res.json(data)
     })
 });
 
@@ -21,5 +21,26 @@ router.get('/:projectId', function(req, res, next){
         res.json(data)
     })
 });
+
+router.post('/newTask', function(req, res, next){
+    tasks.newTask(req.body).then(data=>{
+        console.log(req.body)
+        res.json(data)
+    })
+});
+
+router.put('/updateTask', function(req, res, next){
+    tasks.updateTask(req.body).then(data=>{
+        console.log(req.body)
+        res.json(data)
+    })
+})
+
+router.delete('/deleteTask', function(req, res, next){
+    tasks.deleteTask(req.body).then(data=>{
+        console.log(req.body)
+        res.json(data)
+    })
+})
 
 module.exports = router;
