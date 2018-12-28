@@ -1,0 +1,26 @@
+mat-checkbox {
+    margin-left:  1em;
+    margin-bottom: 1em;
+}
+
+::ng-deep mat-checkbox {
+    span {
+        width: 63vh;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+}
+
+.taskName {
+    width: 60%;
+}
+
+.taskDueDate {
+    width: 30%;
+}
+
+.material-icons {
+    margin: 0 0.5em;
+    width: 5%;
+}

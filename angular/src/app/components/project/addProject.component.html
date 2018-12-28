@@ -1,0 +1,20 @@
+<!-- <button mat-raised-button (click)="openDialog()">Pick one</button> -->
+
+<h1 mat-dialog-title>New Project</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input placeholder="Name Project" matInput [(ngModel)]="data.projectName">
+  </mat-form-field>
+  <mat-form-field>
+    <input placeholder="Due date" matInput [matDatepicker]="picker" [(ngModel)]="data.dueDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea placeholder="Description" matInput [(ngModel)]="data.description"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Create</button>
+</div>

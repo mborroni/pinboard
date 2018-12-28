@@ -51,14 +51,14 @@ module.exports = class projectsModel {
     }
 
     // Update a project
-    updateProject(data){
-        return new Promise(function(resolve, reject){
-            db.query("UPDATE FROM projects SET ? WHERE id LIKE'%" + data.id + "%'", [[{ name: data.name, description: data.description }], function (error, result) {
-                if(!result) {
-                    return reject(result);
-                }
-                resolve(result);
-            })
-        })
-    }
+    // updateProject(data){
+    //     return new Promise(function(resolve, reject){
+    //         db.query("UPDATE FROM projects SET ? WHERE id LIKE'%" + data.id + "%'", [[{ name: data.name, description: data.description }], function (error, result) {
+    //             if(!result) {
+    //                 return reject(result);
+    //             }
+    //             resolve(result);
+    //         })
+    //     })
+    // }
 }

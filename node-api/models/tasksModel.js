@@ -41,7 +41,7 @@ module.exports = class tasksModel {
     // Create a new task
     newTask(data){
         return new Promise(function(resolve, reject){
-            db.query("INSERT INTO tasks (name, description, projectId) VALUES (?, ? , ?)", [data.name, data.description, data.projectId], function (error, result){
+            db.query("INSERT INTO tasks (name, dueDate, isDone, deletedAt, projectId) VALUES (?, ?, ?, ?, ?)", [data.name, data.description, data.projectId], function (error, result){
                 if(!result) {
                     return reject(result);
                 }
@@ -65,7 +65,7 @@ module.exports = class tasksModel {
     // Update a task
     updateTask(data){
         return new Promise(function(resolve, reject){
-            db.query("UPDATE FROM tasks SET ? WHERE id LIKE'%" + id + "%'", [{ name: data.name, description: data.description, projectId: data.projectId}], function (error, result) {
+            db.query("UPDATE FROM tasks SET  ? WHERE id LIKE'%" + id + "%'", [{ name: data.name, description: data.description, projectId: data.projectId}], function (error, result) {
                 if(!result) {
                     return reject(result);
                 }
