@@ -1,0 +1,10 @@
+:host {
+    width: 100%;
+}
+
+.projectData {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 1em 0;
+}

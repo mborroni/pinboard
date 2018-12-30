@@ -14,7 +14,6 @@ import { MaterialModule } from './material-module';
 /* Layout imports */
 import { HeaderComponent } from './layout/header/header.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { FooterComponent } from './layout/footer/footer.component';
 
 import { ProjectsBoardComponent } from './layout/projects-board/projects-board.component';
 import { TasksBoardComponent } from './layout/tasks-board/tasks-board.component';
@@ -28,14 +27,15 @@ import { DeleteTaskComponent } from './components/task/deleteTask.component';
 /* Project imports*/
 import { ProjectComponent } from './components/project/project.component';
 import { AddProjectComponent } from './components/project/addProject.component';
-import { ProjectsListComponent } from './components/project/projects-list/projects-list.component';
+import { ProjectsListComponent } from './components/project/projectsList.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomePageComponent,
-    FooterComponent,
     TasksBoardComponent,
     TaskComponent,
     AddTaskComponent,
@@ -44,7 +44,9 @@ import { ProjectsListComponent } from './components/project/projects-list/projec
     ProjectsBoardComponent,
     ProjectComponent,
     AddProjectComponent,
-    ProjectsListComponent
+    ProjectsListComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
