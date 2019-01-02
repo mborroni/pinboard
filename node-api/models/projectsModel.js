@@ -15,9 +15,9 @@ module.exports = class projectsModel {
     }
 
     // Get project by id
-    getProjectById(id) {
+    getProjectById(projectId) {
         return new Promise(function (resolve, reject) {
-            db.query("SELECT * FROM projects WHERE id LIKE '%" + id + "%'", [], function (error, result) {
+            db.query("SELECT * FROM projects WHERE id LIKE ?", [projectId], function (error, result) {
                 if (!result) {
                     return reject(result);
                 }
@@ -29,7 +29,8 @@ module.exports = class projectsModel {
     // Create a new project
     newProject(data){
         return new Promise(function(resolve, reject){
-            db.query("INSERT INTO projects (name, description) VALUES (?, ?)", [data.name, data.description], function (error, result){
+            // data.name, data.description
+            db.query("INSERT INTO projects (name, description) VALUES (?, ?)", [...data], function (error, result){
                 if(!result) {
                     return reject(result);
                 }
@@ -41,7 +42,7 @@ module.exports = class projectsModel {
     // Delete a task by id
     deleteProject(data){
         return new Promise(function(resolve, reject){
-            db.query("DELETE FROM projects WHERE id LIKE '%" + data.id + "%'", [], function(error, result) {
+            db.query("DELETE FROM projects WHERE id LIKE ?", [data.id], function(error, result) {
                 if(!result) {
                     return reject(result);
                 }

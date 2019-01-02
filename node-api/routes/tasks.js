@@ -9,12 +9,12 @@ router.get('/', function(req, res, next){
     })
 });
 
-// Get task
-// router.get('/:id', function(req, res, next){
-//     tasks.getTaskById(req.params.id).then(data=>{
-//         res.json(data)
-//     })
-// });
+router.post('/', function(req, res, next){
+    tasks.newTask(req.body).then(data=>{
+        console.log(req.body)
+        res.json(data)
+    })
+});
 
 router.get('/:projectId', function(req, res, next){
     tasks.getTasksByProjectId(req.params.projectId).then(data=>{
@@ -22,23 +22,16 @@ router.get('/:projectId', function(req, res, next){
     })
 });
 
-router.post('/newTask', function(req, res, next){
-    tasks.newTask(req.body).then(data=>{
-        console.log(req.body)
-        res.json(data)
-    })
-});
-
-router.put('/updateTask', function(req, res, next){
-    tasks.updateTask(req.body).then(data=>{
-        console.log(req.body)
+router.put('/:taskId', function(req, res, next){
+    tasks.updateTask(req.params.taskId).then(data=>{
+        console.log(req.params.taskId)
         res.json(data)
     })
 })
 
-router.delete('/deleteTask', function(req, res, next){
-    tasks.deleteTask(req.body).then(data=>{
-        console.log(req.body)
+router.delete('/:taskId', function(req, res, next){
+    tasks.deleteTask(req.params.taskId).then(data=>{
+        console.log(req.params.taskId)
         res.json(data)
     })
 })
