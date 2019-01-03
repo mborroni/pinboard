@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TasksService } from 'src/app/services/tasks/tasks.service';
+import { ActivatedRoute } from '@angular/router';
+import { Task } from 'src/app/models/task';
 
 @Component({
   selector: 'addTask',
@@ -28,15 +30,24 @@ import { TasksService } from 'src/app/services/tasks/tasks.service';
 })
 export class AddTaskComponent implements OnInit {
 
-  data = {
+  @Output() onTaskAdded = new EventEmitter<Task>();
+
+  public data: Task = {
+    id: null,
     name: '',
-    dueDate: '',
-    projectId: ''
-  }
-  constructor(public tasksService: TasksService) { }
+    dueDate: null,
+    isDone: false,
+    deletedAt: null,
+    projectId: 2,
+  };
+
+  constructor(public tasksService: TasksService, public route: ActivatedRoute) {
+    this.route = route;
+   }
+
 
   newTask() {
-    this.tasksService.createTask(this.data).subscribe(data => console.log(data))
+    return this.onTaskAdded.emit(this.data);
   }
 
   ngOnInit() {

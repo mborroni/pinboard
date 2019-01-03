@@ -1,17 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'tasksBoard',
   template: `
     <h2>Tasks</h2>
-    <addTask></addTask>
-    <taskList></taskList>
+    <addTask (onTaskAdded)="create($event)"></addTask>
+    <taskList #list></taskList>
   `,
   styleUrls: ['./tasks-board.component.scss']
 })
 export class TasksBoardComponent implements OnInit {
  
- constructor() { }
+  @ViewChild('list') list;
+  
+  constructor() { }
+
+  create(task) {
+    console.log(task);
+    this.list.newTask(task);
+  }
 
   ngOnInit() {
   }

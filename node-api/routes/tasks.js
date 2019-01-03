@@ -11,7 +11,10 @@ router.get('/', function(req, res, next){
 
 router.post('/', function(req, res, next){
     tasks.newTask(req.body).then(data=>{
+        console.log("REQ BODY")
         console.log(req.body)
+        console.log("DATA")
+        console.log(data)
         res.json(data)
     })
 });

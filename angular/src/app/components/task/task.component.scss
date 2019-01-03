@@ -16,8 +16,15 @@ mat-checkbox {
     width: 60%;
 }
 
+.text {
+    color: rgba(0, 0, 0, 0.5);
+}
+
 .taskDueDate {
     width: 30%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .material-icons {

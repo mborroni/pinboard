@@ -3,3 +3,19 @@
     height: 100%;
     margin-left:  2em;
 }
+
+.projects{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.newProject {
+    height: 3em;
+}
+
+.material-icons {
+    font-size: 20px;
+}

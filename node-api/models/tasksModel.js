@@ -6,11 +6,11 @@ var db = require("../bin/mysql");
 
 module.exports = class tasksModel {
 
-     // Get task by ProjectId
+    // Get task by ProjectId
     getTasksByProjectId(projectId) {
         return new Promise(function (resolve, reject) {
             db.query("SELECT * FROM tasks WHERE projectId LIKE ? && deletedAt is NULL", [projectId], function (error, result) {
-                if(!result) {
+                if (!result) {
                     return reject(result);
                 }
                 resolve(result);
@@ -18,15 +18,16 @@ module.exports = class tasksModel {
         })
     }
 
-     // Create a new task
-     newTask(data){
-        return new Promise(function(resolve, reject){
-            // data.name, data.dueDate, data.projectId
-            db.query("INSERT INTO tasks (name, dueDate, projectId) VALUES (?, ?, ?)", [...data], function (error, result){
-                if(!result) {
+    // Create a new task
+    newTask(data) {
+        return new Promise((resolve, reject) => {
+            db.query("INSERT INTO tasks (name, dueDate, projectId) VALUES (?, ?, ?)", [data.name, data.dueDate, data.projectId], (error, result) => {
+                if (!result) {
                     return reject(result);
                 }
-                resolve(result);
+                return this.getTaskById(result.insertId).then(data => {
+                    resolve(data)
+                });
             })
         })
     }
@@ -71,10 +72,10 @@ module.exports = class tasksModel {
     }
 
     // Get all tasks
-       getAllTasks() {
+    getAllTasks() {
         return new Promise(function (resolve, reject) {
             db.query("SELECT * FROM tasks", [], function (error, result) {
-                if(!result) {
+                if (!result) {
                     return reject(result);
                 }
                 resolve(result);
