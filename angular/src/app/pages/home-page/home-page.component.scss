@@ -1,3 +1,32 @@
-.dashboard-container {
+.container {
     width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.projectsBoard {
+    width: 30%;
+    padding: 0 1em;
+}
+
+.tasksBoard {
+    width: 65%;
+    margin-left:  1em;
+}
+
+@media (max-width: 975px) {
+    .container {
+        width: 100%;
+        display: flex;
+        flex-flow: column wrap;
+    }
+    
+    .projectsBoard {
+        width: auto;
+    }
+
+    .tasksBoard {
+        width: auto;
+    }
+   
 }

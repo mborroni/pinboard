@@ -25,7 +25,6 @@ import { RegisterComponent } from './pages/register/register.component';
 import { TaskComponent } from './components/task/task.component';
 import { TaskListComponent } from './components/task/taskList.component';
 import { AddTaskComponent } from './components/task/addTask.component';
-import { DeleteTaskComponent } from './components/task/deleteTask.component';
 import { EditTaskDialogComponent } from './components/task/editTaskDialog.component';
 
 /* Project imports*/
@@ -42,7 +41,6 @@ import { ProjectsListComponent } from './components/project/projectsList.compone
     TaskComponent,
     AddTaskComponent,
     TaskListComponent,
-    DeleteTaskComponent,
     ProjectsBoardComponent,
     ProjectComponent,
     AddProjectComponent,

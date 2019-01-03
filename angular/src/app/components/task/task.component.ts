@@ -5,21 +5,19 @@ import { Task } from 'src/app/models/task';
 @Component({
   selector: 'task',
   template: `
-  <div [ngClass]="{'isDone': data.isDone}">
-    <mat-checkbox [(ngModel)]="data.isDone" (click)="taskDone(data)">
-        <span class="taskName">{{data.name}}</span>
-        <div class="taskDueDate" *ngIf="data.dueDate != null">
-          <span class="text">
-            Due date:
-          </span>
-          <span class="date">
-            {{ data.dueDate  | date : 'shortDate' }}
-          </span>
-          </div>
-    </mat-checkbox>
-    <a class="material-icons">edit</a>
-    <a class="material-icons" (click)="deleteTask(data)">delete</a>
-  </div>
+  <mat-checkbox [(ngModel)]="data.isDone" [ngClass]="{'isDone': data.isDone}" (click)="taskDone(data)">
+      <span class="taskName">{{data.name}}</span>
+      <div class="taskDueDate">
+        <span class="text" *ngIf="data.dueDate != null">
+          Due date:
+        </span>
+        <span class="date">
+          {{ data.dueDate  | date : 'shortDate' }}
+        </span>
+        </div>
+        <a class="material-icons">edit</a>
+        <a class="material-icons" (click)="deleteTask(data)">delete</a>
+  </mat-checkbox>
   `,
   styleUrls: ['./task.component.scss']
 })

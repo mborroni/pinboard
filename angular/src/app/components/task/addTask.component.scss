@@ -1,6 +1,5 @@
 .container {
-    width: 80%;
-    margin-bottom: 1em;
+    width: auto;
 }
 
 .addTask {
@@ -10,7 +9,6 @@
     display: flex;
     justify-content: space-around;
 }
-
 
 .taskName {
     height: 2.5em;

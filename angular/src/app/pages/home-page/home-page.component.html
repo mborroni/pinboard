@@ -1,10 +1,10 @@
 <header></header>
 
-<mat-grid-list class="dashboard-container" cols="3" rowHeight="1000px" gutterSize="1em">
-  <mat-grid-tile [colspan]="1">
+<div class="container">
+  <div class="projectsBoard">
     <projectsBoard></projectsBoard>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2">
+  </div>
+  <div class="tasksBoard">
     <router-outlet></router-outlet>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+</div>
