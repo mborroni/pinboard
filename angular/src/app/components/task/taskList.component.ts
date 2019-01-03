@@ -8,7 +8,7 @@ import { Task } from 'src/app/models/task';
   selector: 'taskList',
   template: `
   <mat-list-item  *ngFor="let task of tasks">
-    <task [data]="task" (onTaskDeleted)="deleteTask($event)"></task>
+    <task [data]="task" (onTaskDeleted)="deleteTask($event)" (onTaskDone)="updateTask($event)"></task>
     <mat-divider [inset]="false" *ngIf="!last"></mat-divider>
   </mat-list-item>
   `,
@@ -32,9 +32,13 @@ export class TaskListComponent implements OnInit {
     this.tasksService.createTask(task).subscribe(newTask => this.tasks.push(newTask[0]));
   }
 
-  deleteTask(task) {
-    console.log("DELETE TASK() TASKLIST TASK");
+  updateTask(task) {
+    console.log("UPDATE TASK DATA ---->");
     console.log(task);
+    this.tasksService.updateTaskById(task.id, task).subscribe(updateTask => console.log(updateTask));
+  }
+
+  deleteTask(task) {
     this.tasksService.deleteTaskById(task.id).subscribe(deletedTask => {
       const index = this.tasks.indexOf(task);
       this.tasks.splice(index, 1)

@@ -9,7 +9,7 @@ module.exports = class tasksModel {
     // Get task by ProjectId
     getTasksByProjectId(projectId) {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM tasks WHERE projectId LIKE ? && deletedAt is NULL", [projectId], (error, result) => {
+            db.query("SELECT * FROM tasks WHERE projectId LIKE ? && deletedAt is NULL ORDER BY isDone ASC", [projectId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -34,12 +34,17 @@ module.exports = class tasksModel {
 
     // Update a task
     updateTask(id, data) {
+        console.log("UPDATE DATA -->")
+        console.log(id);
+        console.log(data);
         return new Promise((resolve, reject) => {
-            db.query("UPDATE tasks SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [...data, id], (error, result) => {
+            db.query("UPDATE tasks SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [data.name, data.dueDate, data.isDone, id], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
+                console.log("UPDATE -->")
                 resolve(result);
+                console.log(result);
             })
         })
     }
