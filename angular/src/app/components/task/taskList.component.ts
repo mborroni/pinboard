@@ -19,7 +19,7 @@ export class TaskListComponent implements OnInit {
   tasks$: Observable<Task[]>;
   tasks: Task[];
 
-  constructor(public tasksService: TasksService, public route: ActivatedRoute) { 
+  constructor(public tasksService: TasksService, public route: ActivatedRoute) {
     this.route = route;
     this.route.params.subscribe(params => this.getAllTasks(params.id));
   }
@@ -29,12 +29,16 @@ export class TaskListComponent implements OnInit {
   }
 
   newTask(task) {
-    this.tasksService.createTask(task).subscribe(data => this.tasks.push(data[0]));
+    this.tasksService.createTask(task).subscribe(newTask => this.tasks.push(newTask[0]));
   }
 
   deleteTask(task) {
-    //tasks.splice
-    this.tasksService.deleteTaskById(task.id).subscribe(task => console.log(task));
+    console.log("DELETE TASK() TASKLIST TASK");
+    console.log(task);
+    this.tasksService.deleteTaskById(task.id).subscribe(deletedTask => {
+      const index = this.tasks.indexOf(task);
+      this.tasks.splice(index, 1)
+    });
   }
 
   ngOnInit() {

@@ -8,8 +8,8 @@ module.exports = class tasksModel {
 
     // Get task by ProjectId
     getTasksByProjectId(projectId) {
-        return new Promise(function (resolve, reject) {
-            db.query("SELECT * FROM tasks WHERE projectId LIKE ? && deletedAt is NULL", [projectId], function (error, result) {
+        return new Promise((resolve, reject) => {
+            db.query("SELECT * FROM tasks WHERE projectId LIKE ? && deletedAt is NULL", [projectId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -34,8 +34,8 @@ module.exports = class tasksModel {
 
     // Update a task
     updateTask(id, data) {
-        return new Promise(function (resolve, reject) {
-            db.query("UPDATE tasks SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [...data, id], function (error, result) {
+        return new Promise((resolve, reject) => {
+            db.query("UPDATE tasks SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [...data, id], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -46,8 +46,8 @@ module.exports = class tasksModel {
 
     // Delete a task SET deletedAt = hour
     deleteTask(taskId) {
-        return new Promise(function (resolve, reject) {
-            db.query("UPDATE tasks SET deletedAt = ? WHERE id LIKE ?", [Date.now(), taskId], function (error, result) {
+        return new Promise((resolve, reject) => {
+            db.query("UPDATE tasks SET deletedAt = ? WHERE id LIKE ?", [Date.now(), taskId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -61,8 +61,8 @@ module.exports = class tasksModel {
     /* NON NECESSARY */
     // Get task by Id
     getTaskById(taskId) {
-        return new Promise(function (resolve, reject) {
-            db.query("SELECT * FROM tasks WHERE id LIKE ?", [taskId], function (error, result) {
+        return new Promise((resolve, reject) => {
+            db.query("SELECT * FROM tasks WHERE id LIKE ?", [taskId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -73,8 +73,8 @@ module.exports = class tasksModel {
 
     // Get all tasks
     getAllTasks() {
-        return new Promise(function (resolve, reject) {
-            db.query("SELECT * FROM tasks", [], function (error, result) {
+        return new Promise((resolve, reject) => {
+            db.query("SELECT * FROM tasks", [], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }

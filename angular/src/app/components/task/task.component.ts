@@ -30,6 +30,7 @@ export class TaskComponent implements OnInit {
   constructor(public tasksService: TasksService) { }
   
   deleteTask(task) {
+    console.log(task);
     return this.onTaskDeleted.emit(task);
   }
 

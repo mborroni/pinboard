@@ -4,8 +4,8 @@ module.exports = class projectsModel {
 
     // Get all projects
     getAllProjects() {
-        return new Promise(function (resolve, reject) {
-            db.query("SELECT * FROM projects", [], function (error, result) {
+        return new Promise((resolve, reject) => {
+            db.query("SELECT * FROM projects", [], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -16,8 +16,8 @@ module.exports = class projectsModel {
 
     // Get project by id
     getProjectById(projectId) {
-        return new Promise(function (resolve, reject) {
-            db.query("SELECT * FROM projects WHERE id LIKE ?", [projectId], function (error, result) {
+        return new Promise((resolve, reject) => {
+            db.query("SELECT * FROM projects WHERE id LIKE ?", [projectId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -28,21 +28,24 @@ module.exports = class projectsModel {
 
     // Create a new project
     newProject(data){
-        return new Promise(function(resolve, reject){
+        return new Promise((resolve, reject) => {
             // data.name, data.description
-            db.query("INSERT INTO projects (name, description) VALUES (?, ?)", [...data], function (error, result){
+            db.query("INSERT INTO projects (name, description) VALUES (?, ?)", [...data], (error, result) => {
                 if(!result) {
                     return reject(result);
                 }
-                resolve(result);
+                // resolve(result);
+                return this.getProjectById(result.insertId).then(data => {
+                    resolve(data)
+                });
              })
         })
     }
 
     // Delete a task by id
     deleteProject(data){
-        return new Promise(function(resolve, reject){
-            db.query("DELETE FROM projects WHERE id LIKE ?", [data.id], function(error, result) {
+        return new Promise((resolve, reject) => {
+            db.query("DELETE FROM projects WHERE id LIKE ?", [data.id], (error, result) => {
                 if(!result) {
                     return reject(result);
                 }
