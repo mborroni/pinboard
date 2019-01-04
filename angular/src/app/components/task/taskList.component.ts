@@ -33,8 +33,7 @@ export class TaskListComponent implements OnInit {
   }
 
   updateTask(task) {
-    console.log("UPDATE TASK DATA ---->");
-    console.log(task);
+    // this.getAllTasks(task.projectId)
     this.tasksService.updateTaskById(task.id, task).subscribe(updateTask => console.log(updateTask));
   }
 

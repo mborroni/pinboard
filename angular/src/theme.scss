@@ -1,0 +1,18 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+/* Typography */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic&amp;subset=latin-ext');
+
+// $general-typography: mat-typography-config($font-family: 'Roboto, sans-serif',
+// $body-2: mat-typography-level(14px, 24px, 600));
+
+// @include mat-core($general-typography);
+
+/* Colours */
+$primary: mat-palette($mat-blue);
+$accent: mat-palette($mat-blue, A200, A100, A400);
+
+$theme: mat-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);

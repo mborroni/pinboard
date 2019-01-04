@@ -1,5 +1,16 @@
+@import '~@angular/material/theming';
+
+$config: mat-typography-config();
+
 a {
+    font-size: mat-font-size($config, body-1);
+    font-family: mat-font-family($config);
     height: 3em;
     margin: 1em 0;
     text-decoration: none;
+    color: black;
+}
+
+.active {
+    font-weight: bold;
 }

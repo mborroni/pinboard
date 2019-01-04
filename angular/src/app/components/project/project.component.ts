@@ -20,8 +20,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
-  @Input()
-  data;
+  @Input() data;
+  
   constructor() { }
 
   ngOnInit() {
