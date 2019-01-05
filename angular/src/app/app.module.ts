@@ -18,8 +18,8 @@ import { TasksBoardComponent } from './layout/tasks-board/tasks-board.component'
 
 /* Page imports */
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './layout/login/login.component';
+import { RegisterComponent } from './layout/register/register.component';
 
 /* Task imports */
 import { TaskComponent } from './components/task/task.component';
@@ -31,6 +31,7 @@ import { EditTaskDialogComponent } from './components/task/editTaskDialog.compon
 import { ProjectComponent } from './components/project/project.component';
 import { AddProjectComponent } from './components/project/addProject.component';
 import { ProjectsListComponent } from './components/project/projectsList.component';
+import { LoginPageComponent } from './pages/login-page/loginPage.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ProjectsListComponent } from './components/project/projectsList.compone
     ProjectsListComponent,
     LoginComponent,
     RegisterComponent,
-    EditTaskDialogComponent
+    EditTaskDialogComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

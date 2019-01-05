@@ -3,7 +3,7 @@ import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'loginForm',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
