@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Task } from 'src/app/models/task';
 
+// (onTaskEdited)="updateTask($event)"
 @Component({
   selector: 'taskList',
   template: `

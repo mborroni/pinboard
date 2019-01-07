@@ -1,6 +1,8 @@
 mat-checkbox {
+    width: 80%;
     margin-left:  1em;
     margin-bottom: 1em;
+    margin-top: 1.5em;
 }
 
 ::ng-deep mat-checkbox {
@@ -13,7 +15,16 @@ mat-checkbox {
 }
 
 ::ng-deep .mat-checkbox-layout {
-    display: flex  !important;
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between;
+}
+
+.task {
+    height: 2.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
 .isDone {
@@ -39,6 +50,9 @@ mat-checkbox {
     justify-content: space-between;
 }
 
+a:active, a:hover {
+    cursor: pointer;
+}
 .material-icons {
     margin: 0 0.5em;
     width: 5%;

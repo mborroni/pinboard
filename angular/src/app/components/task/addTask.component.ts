@@ -10,12 +10,12 @@ import { Task } from 'src/app/models/task';
     <form class="addTask">
       <mat-form-field class="taskName">
         <mat-placeholder>Add new task</mat-placeholder>
-        <input matInput [(ngModel)]="data.name" name="name" required>
+        <input matInput [(ngModel)]="task.name" name="name" required>
       </mat-form-field>
 
       <mat-form-field class="taskDueDate">
         <mat-placeholder>Due date</mat-placeholder>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="data.dueDate" name="dueDate">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="task.dueDate" name="dueDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -32,7 +32,7 @@ export class AddTaskComponent implements OnInit {
 
   @Output() onTaskAdded = new EventEmitter<Task>();
 
-  public data: Task = {
+  public task: Task = {
     id: null,
     name: '',
     dueDate: null,
@@ -47,7 +47,7 @@ export class AddTaskComponent implements OnInit {
 
 
   newTask() {
-    return this.onTaskAdded.emit(this.data);
+    return this.onTaskAdded.emit(this.task);
   }
 
   ngOnInit() {

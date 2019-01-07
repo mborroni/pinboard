@@ -60,6 +60,7 @@ import { LoginPageComponent } from './pages/login-page/loginPage.component';
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[EditTaskDialogComponent]
 })
 export class AppModule { }
