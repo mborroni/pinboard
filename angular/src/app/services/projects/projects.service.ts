@@ -11,7 +11,7 @@ export class ProjectsService {
   constructor(public http:HttpClient) { }
 
   getAll(){
-    return this.http.get(`http://localhost:3000/projects`);
+    return this.http.get<Project[]>(`http://localhost:3000/projects`);
   }
 
   createProject(data) {
@@ -20,5 +20,18 @@ export class ProjectsService {
       dueDate: data.dueDate,
     });
   }
+
+  updateProjectById(projectId, project) {
+    return this.http.put(`http://localhost:3000/projects/${projectId}`, {
+      name: project.name,
+      dueDate: project.dueDate,
+    });
+  }
+
+
+  deleteProjectById(projectId) {
+    return this.http.delete(`http://localhost:3000/projects/${projectId}`);
+  }
+
 }
 
