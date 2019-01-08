@@ -19,12 +19,12 @@ import { Task } from 'src/app/models/task';
   <form>
     <mat-form-field class="taskName">
       <mat-placeholder>Add new task</mat-placeholder>
-      <input matInput [(ngModel)]="task.name" name="name" required>
+      <input matInput [(ngModel)]="editTask.name" name="name" required>
     </mat-form-field>
 
     <mat-form-field class="taskDueDate">
       <mat-placeholder>Due date</mat-placeholder>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="task.dueDate" name="dueDate">
+      <input matInput [matDatepicker]="picker" [(ngModel)]="editTask.dueDate" name="dueDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -41,9 +41,22 @@ import { Task } from 'src/app/models/task';
 })
 export class EditTaskComponent implements OnInit {
 
+  public editTask: Task = {
+    id: null,
+    name: '',
+    dueDate: null,
+    isDone: false,
+    deletedAt: null,
+    projectId: null,
+  };
+
   constructor(public tasksService: TasksService, public dialogRef: MatDialogRef<EditTaskComponent>, @Inject(MAT_DIALOG_DATA) public task: Task) {
-    this.task = task;
-    console.log(task);
+    this.editTask.id = task.id;
+    this.editTask.name = task.name;
+    this.editTask.dueDate = task.dueDate;
+    this.editTask.isDone = task.isDone;
+    this.editTask.deletedAt = task.deletedAt;
+    this.editTask.projectId = task.projectId;
   }
 
   updateTask(task) {

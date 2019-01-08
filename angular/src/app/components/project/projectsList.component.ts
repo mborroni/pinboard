@@ -3,6 +3,8 @@ import { ProjectsService } from 'src/app/services/projects/projects.service';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/models/task';
 import { Project } from 'src/app/models/project';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { EditProjectComponent } from './editProject.component';
 
 @Component({
   selector: 'projectsList',
@@ -14,7 +16,7 @@ import { Project } from 'src/app/models/project';
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="updateProject(project)">
+        <button mat-menu-item (click)="editProject(project)">
           <mat-icon>edit</mat-icon>
           <span>Editar</span>
         </button>
@@ -34,7 +36,7 @@ export class ProjectsListComponent implements OnInit {
   projects$: Observable<Task[]>;
   projects: Project[];
 
-  constructor(public projectsService: ProjectsService) {
+  constructor(public projectsService : ProjectsService, public dialog : MatDialog) {
     this.getAllProjects();
   }
 
@@ -44,6 +46,17 @@ export class ProjectsListComponent implements OnInit {
 
   newProject(project) {
     this.projectsService.createProject(project).subscribe(newProject => this.projects.push(newProject[0]));
+  }
+
+  editProject(project) {
+    let config: MatDialogConfig = {
+      disableClose: true,
+      autoFocus: true,
+      width: '50%',
+      data: project
+    };
+
+    this.dialog.open(EditProjectComponent, config).afterClosed().subscribe(project => this.updateProject(project));
   }
 
   updateProject(project) {

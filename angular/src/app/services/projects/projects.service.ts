@@ -25,6 +25,7 @@ export class ProjectsService {
     return this.http.put(`http://localhost:3000/projects/${projectId}`, {
       name: project.name,
       dueDate: project.dueDate,
+      isDone: project.isDone
     });
   }
 

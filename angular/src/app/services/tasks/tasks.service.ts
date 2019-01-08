@@ -28,9 +28,6 @@ export class TasksService {
   }
 
   updateTaskById(taskId, data) {
-    console.log("SERVICIO DATA -->");
-    console.log(taskId);
-    console.log(data);
     return this.http.put(`http://localhost:3000/tasks/${taskId}`, {
       name: data.name,
       dueDate: data.dueDate,

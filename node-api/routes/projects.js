@@ -23,7 +23,7 @@ router.post('/', function(req, res, next){
 });
 
 router.put('/:projectId', function(req, res, next){
-    projects.updateProject(req.body).then(data=>{
+    projects.updateProject(req.params.id, req.body).then(data=>{
         console.log(req.body)
         res.json(data)
     })

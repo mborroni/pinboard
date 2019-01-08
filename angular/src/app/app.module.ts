@@ -15,11 +15,12 @@ import { MaterialModule } from './material-module';
 import { HeaderComponent } from './layout/header/header.component';
 import { ProjectsBoardComponent } from './layout/projects-board/projects-board.component';
 import { TasksBoardComponent } from './layout/tasks-board/tasks-board.component';
+import { LoginComponent } from './layout/login/login.component';
+import { RegisterComponent } from './layout/register/register.component';
 
 /* Page imports */
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginComponent } from './layout/login/login.component';
-import { RegisterComponent } from './layout/register/register.component';
+import { LoginPageComponent } from './pages/login-page/loginPage.component';
 
 /* Task imports */
 import { TaskComponent } from './components/task/task.component';
@@ -29,9 +30,9 @@ import { EditTaskComponent } from './components/task/editTask.component';
 
 /* Project imports*/
 import { ProjectComponent } from './components/project/project.component';
-import { AddProjectComponent } from './components/project/addProject.component';
 import { ProjectsListComponent } from './components/project/projectsList.component';
-import { LoginPageComponent } from './pages/login-page/loginPage.component';
+import { AddProjectComponent } from './components/project/addProject.component';
+import { EditProjectComponent } from './components/project/editProject.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { LoginPageComponent } from './pages/login-page/loginPage.component';
     LoginComponent,
     RegisterComponent,
     EditTaskComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,6 @@ import { LoginPageComponent } from './pages/login-page/loginPage.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[EditTaskComponent, AddProjectComponent]
+  entryComponents:[EditTaskComponent, AddProjectComponent, EditProjectComponent]
 })
 export class AppModule { }

@@ -44,12 +44,13 @@ module.exports = class projectsModel {
 
     //Update a project
     updateProject(id, data) {
-        return new Promise(function (resolve, reject) {
+        return new Promise((resolve, reject) => {
+            console.log("DATA UPDATE->")
+            console.log(data);
             db.query("UPDATE projects SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [data.name, data.dueDate, data.isDone, id], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
-
                 resolve(result);
             })
         })
