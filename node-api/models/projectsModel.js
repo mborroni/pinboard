@@ -17,7 +17,7 @@ module.exports = class projectsModel {
     // Get project by id
     getProjectById(projectId) {
         return new Promise((resolve, reject) => {
-            db.query("SELECT * FROM projects WHERE id LIKE ?", [projectId], (error, result) => {
+            db.query("SELECT * FROM projects WHERE id LIKE ? && deletedAt is NULL", [projectId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -27,42 +27,44 @@ module.exports = class projectsModel {
     }
 
     // Create a new project
-    newProject(data){
+    newProject(data) {
         return new Promise((resolve, reject) => {
             // data.name, data.description
-            db.query("INSERT INTO projects (name, description) VALUES (?, ?)", [...data], (error, result) => {
-                if(!result) {
+            db.query("INSERT INTO projects (name, dueDate) VALUES (?, ?)", [data.name, data.dueDate], (error, result) => {
+                if (!result) {
                     return reject(result);
                 }
-                // resolve(result);
+                //resolve(result);
                 return this.getProjectById(result.insertId).then(data => {
                     resolve(data)
                 });
-             })
+            })
         })
     }
 
-    // Delete a task by id
-    deleteProject(data){
+    //Update a project
+    updateProject(id, data) {
+        return new Promise(function (resolve, reject) {
+            db.query("UPDATE projects SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [data.name, data.dueDate, data.isDone, id], (error, result) => {
+                if (!result) {
+                    return reject(result);
+                }
+
+                resolve(result);
+            })
+        })
+    }
+
+
+    // Delete a project by id
+    deleteProject(project) {
         return new Promise((resolve, reject) => {
-            db.query("DELETE FROM projects WHERE id LIKE ?", [data.id], (error, result) => {
-                if(!result) {
+            db.query("UPDATE projects SET deletedAt = ? WHERE id LIKE ?", [Date.now(), project.id], (error, result) => {
+                if (!result) {
                     return reject(result);
                 }
                 resolve(result);
             })
         })
     }
-
-    // Update a project
-    // updateProject(data){
-    //     return new Promise(function(resolve, reject){
-    //         db.query("UPDATE FROM projects SET ? WHERE id LIKE'%" + data.id + "%'", [[{ name: data.name, description: data.description }], function (error, result) {
-    //             if(!result) {
-    //                 return reject(result);
-    //             }
-    //             resolve(result);
-    //         })
-    //     })
-    // }
 }

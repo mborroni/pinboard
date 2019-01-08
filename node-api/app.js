@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // headers
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Methods','GET,POST,DELETE,PUT');
+  res.setHeader('Access-Control-Allow-Methods','GET,POST,DELETE,PUT,OPTIONS');
   next();
 });
 app.options("/*", function(req, res, next){

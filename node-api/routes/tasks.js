@@ -11,10 +11,6 @@ router.get('/', function(req, res, next){
 
 router.post('/', function(req, res, next){
     tasks.newTask(req.body).then(data=>{
-        console.log("REQ BODY")
-        console.log(req.body)
-        console.log("DATA")
-        console.log(data)
         res.json(data)
     })
 });
@@ -26,8 +22,7 @@ router.get('/:projectId', function(req, res, next){
 });
 
 router.put('/:taskId', function(req, res, next){
-    tasks.updateTask(req.params.taskId).then(data=>{
-        console.log(req.params.taskId)
+    tasks.updateTask(req.params.taskId, req.body).then(data=>{
         res.json(data)
     })
 })
