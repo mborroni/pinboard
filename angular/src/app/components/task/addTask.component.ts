@@ -32,7 +32,7 @@ export class AddTaskComponent implements OnInit {
 
   @Output() onTaskAdded = new EventEmitter<Task>();
 
-  public task: Task = {
+  public task : Task = {
     id: null,
     name: '',
     dueDate: null,

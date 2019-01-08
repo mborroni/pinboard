@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { TasksService } from 'src/app/services/tasks/tasks.service';
 import { Task } from 'src/app/models/task';
-import { EditTaskDialogComponent } from './editTaskDialog.component';
+import { EditTaskComponent } from './editTask.component';
 
 @Component({
   selector: 'task',
@@ -49,12 +49,11 @@ export class TaskComponent implements OnInit {
     let config: MatDialogConfig = {
       disableClose: true,
       autoFocus: true,
-      width: '60%',
+      width: '50%',
       data: task
     };
 
-    this.dialog.open(EditTaskDialogComponent, config);
-    // return this.onTaskEdited.emit(task);
+    this.dialog.open(EditTaskComponent, config);
   }
 
   ngOnInit() {

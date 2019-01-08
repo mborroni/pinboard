@@ -1,3 +1,10 @@
+::ng-deep {
+    body {
+        width:100wv;
+        height:100vh;
+    }
+}
+
 .container {
     width: 100%;
     display: flex;

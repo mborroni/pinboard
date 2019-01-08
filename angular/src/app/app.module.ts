@@ -25,7 +25,7 @@ import { RegisterComponent } from './layout/register/register.component';
 import { TaskComponent } from './components/task/task.component';
 import { TaskListComponent } from './components/task/taskList.component';
 import { AddTaskComponent } from './components/task/addTask.component';
-import { EditTaskDialogComponent } from './components/task/editTaskDialog.component';
+import { EditTaskComponent } from './components/task/editTask.component';
 
 /* Project imports*/
 import { ProjectComponent } from './components/project/project.component';
@@ -48,7 +48,7 @@ import { LoginPageComponent } from './pages/login-page/loginPage.component';
     ProjectsListComponent,
     LoginComponent,
     RegisterComponent,
-    EditTaskDialogComponent,
+    EditTaskComponent,
     LoginPageComponent
   ],
   imports: [
@@ -61,6 +61,6 @@ import { LoginPageComponent } from './pages/login-page/loginPage.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[EditTaskDialogComponent]
+  entryComponents:[EditTaskComponent, AddProjectComponent]
 })
 export class AppModule { }
