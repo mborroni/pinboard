@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TasksService } from 'src/app/services/tasks/tasks.service';
-import { DialogData } from '../project/addProject.component';
 import { Task } from 'src/app/models/task';
 
 @Component({
@@ -33,7 +32,7 @@ import { Task } from 'src/app/models/task';
   <mat-divider></mat-divider>
 
   <mat-toolbar class="footer">
-    <button mat-raised-button color="primary" (click)="updateTask(task)">Actualizar</button>
+    <button mat-raised-button color="primary" (click)="updateTask(editTask)">Actualizar</button>
     <button mat-button (click)="onClose()">Cancelar</button>
   </mat-toolbar>
   `,
@@ -50,7 +49,11 @@ export class EditTaskComponent implements OnInit {
     projectId: null,
   };
 
-  constructor(public tasksService: TasksService, public dialogRef: MatDialogRef<EditTaskComponent>, @Inject(MAT_DIALOG_DATA) public task: Task) {
+  constructor(
+    public tasksService: TasksService,
+    public dialogRef: MatDialogRef<EditTaskComponent>,
+    @Inject(MAT_DIALOG_DATA) public task: Task
+  ) {
     this.editTask.id = task.id;
     this.editTask.name = task.name;
     this.editTask.dueDate = task.dueDate;
@@ -61,8 +64,9 @@ export class EditTaskComponent implements OnInit {
 
   updateTask(task) {
     // this.getAllTasks(task.projectId)
-    this.tasksService.updateTaskById(task.id, task).subscribe(updateTask => console.log(updateTask));
-    this.dialogRef.close();
+    this.tasksService
+      .updateTaskById(task.id, task)
+      .subscribe(updatedTask => this.dialogRef.close(updatedTask));
   }
 
   onClose() {

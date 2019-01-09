@@ -26,7 +26,7 @@ module.exports = class tasksModel {
                     return reject(result);
                 }
                 return this.getTaskById(result.insertId).then(data => {
-                    resolve(data)
+                    resolve(data[0])
                 });
             })
         })
@@ -34,17 +34,14 @@ module.exports = class tasksModel {
 
     // Update a task
     updateTask(id, data) {
-        console.log("UPDATE DATA -->")
-        console.log(id);
-        console.log(data);
         return new Promise((resolve, reject) => {
             db.query("UPDATE tasks SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [data.name, data.dueDate, data.isDone, id], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
-                console.log("UPDATE -->")
-                resolve(result);
-                console.log(result);
+                return this.getTaskById(id).then(data => {
+                    resolve(data[0])
+                });
             })
         })
     }

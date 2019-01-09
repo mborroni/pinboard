@@ -29,14 +29,13 @@ module.exports = class projectsModel {
     // Create a new project
     newProject(data) {
         return new Promise((resolve, reject) => {
-            // data.name, data.description
-            db.query("INSERT INTO projects (name, dueDate) VALUES (?, ?)", [data.name, data.dueDate], (error, result) => {
+            console.log(data);
+            db.query("INSERT INTO projects (name, dueDate, userId) VALUES (?, ?, ?)", [data.name, data.dueDate, data.userId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
-                //resolve(result);
                 return this.getProjectById(result.insertId).then(data => {
-                    resolve(data)
+                    resolve(data[0]);
                 });
             })
         })
@@ -45,13 +44,13 @@ module.exports = class projectsModel {
     //Update a project
     updateProject(id, data) {
         return new Promise((resolve, reject) => {
-            console.log("DATA UPDATE->")
-            console.log(data);
-            db.query("UPDATE projects SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [data.name, data.dueDate, data.isDone, id], (error, result) => {
+            db.query("UPDATE projects SET name = ?, dueDate = ? WHERE id LIKE ?", [data.name, data.dueDate, id], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
-                resolve(result);
+                return this.getProjectById(id).then(data => {
+                    resolve(data[0])
+                });
             })
         })
     }

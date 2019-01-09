@@ -36,7 +36,7 @@ export class ProjectsListComponent implements OnInit {
   projects$: Observable<Task[]>;
   projects: Project[];
 
-  constructor(public projectsService : ProjectsService, public dialog : MatDialog) {
+  constructor(public projectsService: ProjectsService, public dialog: MatDialog) {
     this.getAllProjects();
   }
 
@@ -45,29 +45,36 @@ export class ProjectsListComponent implements OnInit {
   }
 
   newProject(project) {
-    this.projectsService.createProject(project).subscribe(newProject => this.projects.push(newProject[0]));
+    console.log(project);
+    this.projects.push(project);
   }
 
   editProject(project) {
-    let config: MatDialogConfig = {
+    const config: MatDialogConfig = {
       disableClose: true,
       autoFocus: true,
       width: '50%',
       data: project
     };
 
-    this.dialog.open(EditProjectComponent, config).afterClosed().subscribe(project => this.updateProject(project));
+    this.dialog.open(EditProjectComponent, config)
+      .afterClosed()
+      .subscribe(updatedProject => updatedProject && this.updateProject(updatedProject));
   }
 
   updateProject(project) {
-    this.projectsService.updateProjectById(project.id, project).subscribe(updateProject => console.log(updateProject));
+    const index = this.projects.findIndex(p => p.id === project.id);
+
+    if (index > -1) {
+      this.projects[index] = project;
+    }
   }
 
-  deleteProject(project){
+  deleteProject(project) {
     this.projectsService.deleteProjectById(project.id).subscribe(deletedProject => {
       const index = this.projects.indexOf(project);
       this.projects.splice(index, 1);
-    })
+    });
   }
 
   ngOnInit() {

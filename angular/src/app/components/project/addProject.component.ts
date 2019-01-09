@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ProjectsService } from 'src/app/services/projects/projects.service';
 import { Project } from 'src/app/models/project';
 
@@ -16,18 +16,24 @@ export interface DialogData {
 })
 export class AddProjectComponent implements OnInit {
 
-  public project : Project = {
+  public project: Project = {
     id: null,
     name: null,
     dueDate: null,
     deletedAt: null,
-    userId: null
-  }
+    userId: 1
+  };
 
-  constructor(public projectsService: ProjectsService, public dialogRef: MatDialogRef<AddProjectComponent>) { }
+  constructor(
+    public projectsService: ProjectsService,
+    public dialogRef: MatDialogRef<AddProjectComponent>
+  ) { }
 
   onSubmit(project) {
-    this.dialogRef.close(project);
+    console.log(project);
+    this.projectsService
+      .createProject(project)
+      .subscribe(newProject => this.dialogRef.close(newProject));
   }
 
   onClose() {

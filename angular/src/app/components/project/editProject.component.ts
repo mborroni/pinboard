@@ -17,9 +17,13 @@ export class EditProjectComponent implements OnInit {
     dueDate: null,
     deletedAt: null,
     userId: null
-  }
+  };
 
-  constructor(public projectsService: ProjectsService, public dialogRef: MatDialogRef<AddProjectComponent>, @Inject(MAT_DIALOG_DATA) public project: Project) {
+  constructor(
+    public projectsService: ProjectsService,
+    public dialogRef: MatDialogRef<AddProjectComponent>,
+    @Inject(MAT_DIALOG_DATA) public project: Project
+  ) {
     this.editProject.id = this.project.id;
     this.editProject.name = this.project.name;
     this.editProject.dueDate = this.project.dueDate;
@@ -28,13 +32,13 @@ export class EditProjectComponent implements OnInit {
   }
 
   onSubmit(project) {
-    this.projectsService.updateProjectById(project.id, project).subscribe(updateProject => console.log(updateProject));
-    this.dialogRef.close(project);
+    this.projectsService
+      .updateProjectById(project.id, project)
+      .subscribe(updatedProject => this.dialogRef.close(updatedProject));
   }
 
   onClose() {
-    this.editProject = this.project;
-    this.dialogRef.close(this.editProject);
+    this.dialogRef.close();
   }
 
   ngOnInit() {

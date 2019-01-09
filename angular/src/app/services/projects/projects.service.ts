@@ -8,9 +8,9 @@ import { Project } from 'src/app/models/project';
 })
 export class ProjectsService {
 
-  constructor(public http:HttpClient) { }
+  constructor(public http: HttpClient) { }
 
-  getAll(){
+  getAll() {
     return this.http.get<Project[]>(`http://localhost:3000/projects`);
   }
 
@@ -18,6 +18,7 @@ export class ProjectsService {
     return this.http.post<Project>(`http://localhost:3000/projects`, {
       name: data.name,
       dueDate: data.dueDate,
+      userId: data.userId,
     });
   }
 

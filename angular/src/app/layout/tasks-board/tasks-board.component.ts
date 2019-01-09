@@ -10,17 +10,15 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./tasks-board.component.scss']
 })
 export class TasksBoardComponent implements OnInit {
- 
+
   @ViewChild('list') list;
-  
+
   constructor() { }
 
   create(task) {
-    console.log(task);
     this.list.newTask(task);
   }
 
   ngOnInit() {
   }
-
 }

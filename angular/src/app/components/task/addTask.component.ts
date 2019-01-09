@@ -32,17 +32,19 @@ export class AddTaskComponent implements OnInit {
 
   @Output() onTaskAdded = new EventEmitter<Task>();
 
-  public task : Task = {
+  public task: Task = {
     id: null,
     name: '',
     dueDate: null,
     isDone: false,
     deletedAt: null,
-    projectId: 2,
+    projectId: null,
   };
 
   constructor(public tasksService: TasksService, public route: ActivatedRoute) {
     this.route = route;
+    this.route.params.subscribe(params => this.task.projectId = params.id);
+    this.route.url.subscribe(u => { this.task.name = ''; this.task.dueDate = null; });
    }
 
 

@@ -9,7 +9,7 @@ import { Task } from 'src/app/models/task';
   selector: 'taskList',
   template: `
   <mat-list-item  *ngFor="let task of tasks">
-    <task [data]="task" (onTaskDeleted)="deleteTask($event)" (onTaskDone)="updateTask($event)"></task>
+    <task [data]="task" (onTaskDeleted)="deleteTask($event)" (onTaskTriggered)="updateTask($event)"></task>
     <mat-divider [inset]="false" *ngIf="!last"></mat-divider>
   </mat-list-item>
   `,
@@ -22,27 +22,39 @@ export class TaskListComponent implements OnInit {
 
   constructor(public tasksService: TasksService, public route: ActivatedRoute) {
     this.route = route;
-    this.route.params.subscribe(params => this.getAllTasks(params.id));
+    this.route.params
+      .subscribe(params =>
+        this.getAllTasks(params.id));
   }
 
   getAllTasks(projectId) {
-    this.tasksService.getByProjectId(projectId).subscribe(data => this.tasks = data);
+    this.tasksService
+      .getByProjectId(projectId)
+      .subscribe(data =>
+        this.tasks = data);
   }
 
   newTask(task) {
-    this.tasksService.createTask(task).subscribe(newTask => this.tasks.push(newTask[0]));
+    this.tasksService
+      .createTask(task)
+      .subscribe(newTask =>
+        this.tasks.push(newTask));
   }
 
   updateTask(task) {
     // this.getAllTasks(task.projectId)
-    this.tasksService.updateTaskById(task.id, task).subscribe(updateTask => console.log(updateTask));
+    this.tasksService
+      .updateTaskById(task.id, task)
+      .subscribe(updateTask => console.log(updateTask));
   }
 
   deleteTask(task) {
-    this.tasksService.deleteTaskById(task.id).subscribe(deletedTask => {
-      const index = this.tasks.indexOf(task);
-      this.tasks.splice(index, 1)
-    });
+    this.tasksService
+      .deleteTaskById(task.id)
+      .subscribe(deletedTask => {
+        const index = this.tasks.indexOf(task);
+        this.tasks.splice(index, 1);
+      });
   }
 
   ngOnInit() {
