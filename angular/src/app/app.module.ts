@@ -7,6 +7,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
+
+/* Auth */
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth.guard';
+import { UsersService } from './services/users/users.service';
 
 /* Components imports */
 import { MaterialModule } from './material-module';
@@ -51,7 +57,7 @@ import { EditProjectComponent } from './components/project/editProject.component
     RegisterComponent,
     EditTaskComponent,
     LoginPageComponent,
-    EditProjectComponent
+    EditProjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,10 +65,26 @@ import { EditProjectComponent } from './components/project/editProject.component
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:4000'],
+        blacklistedRoutes: ['localhost:4000/api/auth']
+      }
+    })
   ],
-  providers: [],
+  providers: [  
+    UsersService,
+    AuthService,
+    AuthGuard],
   bootstrap: [AppComponent],
-  entryComponents:[EditTaskComponent, AddProjectComponent, EditProjectComponent]
+  entryComponents: [EditTaskComponent, AddProjectComponent, EditProjectComponent]
 })
+
 export class AppModule { }
+
+/* Token getter */
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}

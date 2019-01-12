@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'loginForm',
@@ -17,16 +19,17 @@ export class LoginComponent implements OnInit {
     lastName: null
   };
 
-  constructor(public router: Router) {
+  constructor(private router: Router, private auth: AuthService) {
     this.router = router;
-   }
+  }
 
-  login() : void {
-    if(this.user.username == 'admin' && this.user.password == 'admin'){
-     this.router.navigate(["projects"]);
-    }else {
-      alert("Invalid credentials");
-    } 
+  login(): void {
+    this.auth.login(this.user.username, this.user.password)
+      .pipe(first())
+      .subscribe(
+        result => this.router.navigate(['projects']),
+        err => console.log("Couldn't authenticate")
+      );
   }
 
   ngOnInit() {

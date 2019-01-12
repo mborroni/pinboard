@@ -5,6 +5,7 @@ import { TasksBoardComponent } from './layout/tasks-board/tasks-board.component'
 import { LoginComponent } from './layout/login/login.component';
 import { RegisterComponent } from './layout/register/register.component';
 import { LoginPageComponent } from './pages/login-page/loginPage.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   // {
@@ -22,10 +23,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'projects', component: HomePageComponent,
+    path: 'projects', component: HomePageComponent, canActivate: [AuthGuard],
     children: [
       {
-        path: ':id', component: TasksBoardComponent
+        path: ':id', component: TasksBoardComponent, canActivate: [AuthGuard]
       }
     ]
   },
