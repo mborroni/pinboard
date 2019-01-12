@@ -27,10 +27,9 @@ module.exports = class projectsModel {
     }
 
     // Create a new project
-    newProject(data) {
+    newProject(project) {
         return new Promise((resolve, reject) => {
-            console.log(data);
-            db.query("INSERT INTO projects (name, dueDate, userId) VALUES (?, ?, ?)", [data.name, data.dueDate, data.userId], (error, result) => {
+            db.query("INSERT INTO projects (name, dueDate, userId) VALUES (?, ?, ?)", [project.name, project.dueDate, project.userId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -42,9 +41,9 @@ module.exports = class projectsModel {
     }
 
     //Update a project
-    updateProject(id, data) {
+    updateProject(id, project) {
         return new Promise((resolve, reject) => {
-            db.query("UPDATE projects SET name = ?, dueDate = ? WHERE id LIKE ?", [data.name, data.dueDate, id], (error, result) => {
+            db.query("UPDATE projects SET name = ?, dueDate = ? WHERE id LIKE ?", [project.name, project.dueDate, id], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }

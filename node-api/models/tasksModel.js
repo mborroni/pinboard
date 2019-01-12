@@ -1,9 +1,5 @@
 var db = require("../bin/mysql");
 
-// var dateTime = require('node-datetime');
-// var dt = dateTime.create();
-// var formatted = dt.format('Y-m-d H:M:S');
-
 module.exports = class tasksModel {
 
     // Get task by ProjectId
@@ -19,9 +15,9 @@ module.exports = class tasksModel {
     }
 
     // Create a new task
-    newTask(data) {
+    newTask(task) {
         return new Promise((resolve, reject) => {
-            db.query("INSERT INTO tasks (name, dueDate, projectId) VALUES (?, ?, ?)", [data.name, data.dueDate, data.projectId], (error, result) => {
+            db.query("INSERT INTO tasks (name, dueDate, projectId) VALUES (?, ?, ?)", [task.name, task.dueDate, task.projectId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
@@ -33,9 +29,9 @@ module.exports = class tasksModel {
     }
 
     // Update a task
-    updateTask(id, data) {
+    updateTask(id, task) {
         return new Promise((resolve, reject) => {
-            db.query("UPDATE tasks SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [data.name, data.dueDate, data.isDone, id], (error, result) => {
+            db.query("UPDATE tasks SET name = ?, dueDate = ?, isDone = ? WHERE id LIKE ?", [task.name, task.dueDate, task.isDone, id], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }
