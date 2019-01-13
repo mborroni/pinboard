@@ -1,9 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'registerForm',
-  templateUrl: './register.component.html',
+  template: `
+  <mat-card class="registerCard">
+    <mat-card-header>
+      <mat-card-title>Registrarse</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Nombre" [(ngModel)]="user.firstName" type="firstname" name="firstname" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Apellido" [(ngModel)]="user.lastName" type="lastname" name="lastname" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Username" [(ngModel)]="user.username" type="username" name="username" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Password" [(ngModel)]="user.password" type="password" name="password" required>
+        </mat-form-field>
+      </form>
+      <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="register(user)" color="primary" type="submit">Registrarse</button>
+      <button mat-button [routerLink]="['/']">Volver</button>
+    </mat-card-actions>
+  </mat-card>
+  `,
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
@@ -17,10 +45,10 @@ export class RegisterComponent implements OnInit {
   };
 
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
-  register(newUser): void {
-    console.log(newUser);
+  register(user): void {
+    this.usersService.createUser(user).subscribe(newUser => console.log(newUser));
   }
 
   ngOnInit() {

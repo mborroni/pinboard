@@ -1,5 +1,5 @@
 var db = require("../bin/mysql");
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var config = require('../config/env');
 

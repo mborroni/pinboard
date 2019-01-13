@@ -3,12 +3,44 @@ import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'loginForm',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  template: `
+  <mat-card class="loginCard">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Username" [(ngModel)]="user.username" type="username" name="username" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Password" [(ngModel)]="user.password" type="password" name="password" required>
+        </mat-form-field>
+      </form>
+      <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="login()" color="primary" type="submit">Ingresar</button>
+      <button mat-button [routerLink]="['', 'register']">Registrarse</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="authError" [@fadeInOut] *ngIf="error">Usuario o contraseña inválido</mat-card>
+  `,
+  styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void <=> *', animate(500)),
+    ])
+  ]
 })
+
 export class LoginComponent implements OnInit {
 
   public user: User = {
@@ -19,6 +51,8 @@ export class LoginComponent implements OnInit {
     lastName: null
   };
 
+  error: boolean = false;
+
   constructor(private router: Router, private auth: AuthService) {
     this.router = router;
   }
@@ -28,7 +62,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => this.router.navigate(['projects']),
-        err => console.log('Couldnt authenticate')
+        err => this.error = true
       );
   }
 

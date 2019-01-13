@@ -26,3 +26,14 @@ mat-form-field {
 mat-card-actions {
     margin: 0 1em;
 }
+
+.authError {
+    color: white;
+    background: rgba(255, 0, 0, 0.705);
+    width: 19em;
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translate;
+    transform: translate(-50%, 0%);
+}

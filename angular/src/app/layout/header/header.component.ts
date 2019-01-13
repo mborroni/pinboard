@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   selector: 'header',
   template: `
   <mat-toolbar color="primary" role="heading">
-      <span class="fill-remaining-space">Pinboard</span>
+      <span class="fill-remaining-space"><img src="../../../assets/img/header2.png"></span>
       <a mat-button (click)="logout()"><mat-icon>exit_to_app</mat-icon></a>
   </mat-toolbar>
   `,
