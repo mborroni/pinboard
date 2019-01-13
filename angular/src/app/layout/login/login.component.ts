@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => this.router.navigate(['projects']),
-        err => console.log("Couldn't authenticate")
+        err => console.log('Couldnt authenticate')
       );
   }
 

@@ -1,11 +1,6 @@
 var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'pinboard',
-    port: 3306
- });
+var config = require('../config/env');
+var connection = mysql.createConnection(config.mysql);
  connection.connect(function(error){
     if(error){
        throw error;

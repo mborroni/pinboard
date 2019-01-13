@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
 
   constructor() { }
 
-  register(newUser) : void {
+  register(newUser): void {
     console.log(newUser);
   }
 

@@ -14,6 +14,17 @@ module.exports = class projectsModel {
         })
     }
 
+    getAllProjectsByUserId(userId) {
+        return new Promise((resolve, reject) => {
+            db.query("SELECT * FROM projects where userId like ?", [userId], (error, result) => {
+                if (!result) {
+                    return reject(result);
+                }
+                resolve(result);
+            })
+        })
+    }
+
     // Get project by id
     getProjectById(projectId) {
         return new Promise((resolve, reject) => {
@@ -27,9 +38,9 @@ module.exports = class projectsModel {
     }
 
     // Create a new project
-    newProject(project) {
+    newProject(project, userId) {
         return new Promise((resolve, reject) => {
-            db.query("INSERT INTO projects (name, dueDate, userId) VALUES (?, ?, ?)", [project.name, project.dueDate, project.userId], (error, result) => {
+            db.query("INSERT INTO projects (name, dueDate, userId) VALUES (?, ?, ?)", [project.name, project.dueDate, userId], (error, result) => {
                 if (!result) {
                     return reject(result);
                 }

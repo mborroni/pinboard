@@ -21,7 +21,7 @@ export class AddProjectComponent implements OnInit {
     name: null,
     dueDate: null,
     deletedAt: null,
-    userId: 1
+    userId: null
   };
 
   constructor(

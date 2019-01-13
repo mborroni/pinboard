@@ -17,8 +17,7 @@ export class ProjectsService {
   createProject(data) {
     return this.http.post<Project>(`http://localhost:3000/projects`, {
       name: data.name,
-      dueDate: data.dueDate,
-      userId: data.userId,
+      dueDate: data.dueDate
     });
   }
 

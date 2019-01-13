@@ -69,12 +69,12 @@ import { EditProjectComponent } from './components/project/editProject.component
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:4000'],
-        blacklistedRoutes: ['localhost:4000/api/auth']
+        whitelistedDomains: ['localhost:3000'],
+        blacklistedRoutes: ['localhost:3000/auth']
       }
     })
   ],
-  providers: [  
+  providers: [
     UsersService,
     AuthService,
     AuthGuard],

@@ -3,8 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var jwt = require('express-jwt');
+var config = require('./config/env');
+var secret = config.jwt.jwtSecret;
+var authed = jwt({ secret });
 
+var load = require('./middleware/users');
+
+// index.js -> maneja rutas
 var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
 var tasksRouter = require('./routes/tasks');
 var projectsRouter = require('./routes/projects')
@@ -37,9 +45,10 @@ app.options("/*", function (req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/tasks', tasksRouter);
-app.use('/projects', projectsRouter);
+app.use('/auth', authRouter);
+app.use('/users', authed, usersRouter);
+app.use('/tasks', authed, load, tasksRouter);
+app.use('/projects', authed, load, projectsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

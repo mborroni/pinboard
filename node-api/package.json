@@ -6,6 +6,7 @@
     "start": "nodemon --watch server ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "date-time": "^2.1.0",

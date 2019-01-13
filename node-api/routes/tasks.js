@@ -15,7 +15,7 @@ router.post('/', function(req, res, next){
     })
 });
 
-router.get('/:projectId', function(req, res, next){
+router.get('/:projectId', function (req, res, next) {
     tasks.getTasksByProjectId(req.params.projectId).then(data=>{
         res.json(data)
     })
@@ -29,7 +29,6 @@ router.put('/:taskId', function(req, res, next){
 
 router.delete('/:taskId', function(req, res, next){
     tasks.deleteTask(req.params.taskId).then(data=>{
-        console.log(req.params.taskId)
         res.json(data)
     })
 })

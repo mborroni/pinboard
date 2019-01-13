@@ -4,7 +4,7 @@ var projectsModel = require("../models/projectsModel");
 var projects = new projectsModel();
 
 router.get('/', function (req, res, next) {
-    projects.getAllProjects().then(data => {
+    projects.getAllProjectsByUserId(req.user.id).then(data => {
         res.json(data);
     })
 });
@@ -16,7 +16,7 @@ router.get('/:projectId', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    projects.newProject(req.body).then(data => {
+    projects.newProject(req.body, req.user.id).then(data => {
         res.json(data)
     })
 });
@@ -29,7 +29,6 @@ router.put('/:projectId', function (req, res, next) {
 
 router.delete('/:projectId', function (req, res, next) {
     projects.deleteProject(req.body).then(data => {
-        console.log(req.body)
         res.json(data)
     })
 })
