@@ -45,7 +45,6 @@ export class ProjectsListComponent implements OnInit {
   }
 
   newProject(project) {
-    console.log(project);
     this.projects.push(project);
   }
 

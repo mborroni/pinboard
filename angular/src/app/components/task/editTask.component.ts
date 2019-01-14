@@ -15,7 +15,7 @@ import { Task } from 'src/app/models/task';
 
   <mat-divider></mat-divider>
 
-  <form>
+  <form (keyup.enter)="updateTask(editTask)">
     <mat-form-field class="taskName">
       <mat-placeholder>Add new task</mat-placeholder>
       <input matInput [(ngModel)]="editTask.name" name="name" required>

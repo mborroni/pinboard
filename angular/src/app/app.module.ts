@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
+import { OrderModule } from 'ngx-order-pipe';
 
 /* Auth */
 import { AuthService } from './services/auth.service';
@@ -66,6 +67,7 @@ import { EditProjectComponent } from './components/project/editProject.component
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    OrderModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -77,7 +79,8 @@ import { EditProjectComponent } from './components/project/editProject.component
   providers: [
     UsersService,
     AuthService,
-    AuthGuard],
+    AuthGuard
+  ],
   bootstrap: [AppComponent],
   entryComponents: [EditTaskComponent, AddProjectComponent, EditProjectComponent]
 })

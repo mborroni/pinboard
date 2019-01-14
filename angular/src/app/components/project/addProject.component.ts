@@ -21,7 +21,7 @@ export interface DialogData {
 
   <mat-divider></mat-divider>
 
-  <form>
+  <form (keyup.enter)="onSubmit(project)">
     <mat-form-field class="projectName">
       <mat-placeholder>Nombre</mat-placeholder>
       <input matInput [(ngModel)]="project.name" name="name" required>
@@ -60,7 +60,6 @@ export class AddProjectComponent implements OnInit {
   ) { }
 
   onSubmit(project) {
-    console.log(project);
     this.projectsService
       .createProject(project)
       .subscribe(newProject => this.dialogRef.close(newProject));

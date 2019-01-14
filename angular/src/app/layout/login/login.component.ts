@@ -13,7 +13,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form>
+      <form (keyup.enter)="login()">
         <mat-form-field>
           <input matInput placeholder="Username" [(ngModel)]="user.username" type="username" name="username" required>
         </mat-form-field>
@@ -47,11 +47,11 @@ export class LoginComponent implements OnInit {
     id: null,
     username: null,
     password: null,
-    firstName: null,
-    lastName: null
+    firstname: null,
+    lastname: null
   };
 
-  error: boolean = false;
+  error = false;
 
   constructor(private router: Router, private auth: AuthService) {
     this.router = router;

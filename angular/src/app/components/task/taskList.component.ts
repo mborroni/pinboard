@@ -8,7 +8,7 @@ import { Task } from 'src/app/models/task';
 @Component({
   selector: 'taskList',
   template: `
-  <mat-list-item  *ngFor="let task of tasks">
+  <mat-list-item  *ngFor="let task of tasks | orderBy: 'isDone'">
     <task [data]="task" (onTaskDeleted)="deleteTask($event)" (onTaskTriggered)="updateTask($event)"></task>
     <mat-divider [inset]="false" *ngIf="!last"></mat-divider>
   </mat-list-item>

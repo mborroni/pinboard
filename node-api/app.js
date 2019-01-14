@@ -46,7 +46,7 @@ app.options("/*", function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/users', authed, usersRouter);
+app.use('/users', usersRouter);
 app.use('/tasks', authed, load, tasksRouter);
 app.use('/projects', authed, load, projectsRouter);
 

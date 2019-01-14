@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'registerForm',
@@ -10,12 +11,12 @@ import { UsersService } from 'src/app/services/users/users.service';
       <mat-card-title>Registrarse</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form>
+      <form (keyup.enter)="register(user)">
         <mat-form-field>
-          <input matInput placeholder="Nombre" [(ngModel)]="user.firstName" type="firstname" name="firstname" required>
+          <input matInput placeholder="Nombre" [(ngModel)]="user.firstname" type="firstname" name="firstname" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Apellido" [(ngModel)]="user.lastName" type="lastname" name="lastname" required>
+          <input matInput placeholder="Apellido" [(ngModel)]="user.lastname" type="lastname" name="lastname" required>
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Username" [(ngModel)]="user.username" type="username" name="username" required>
@@ -40,15 +41,19 @@ export class RegisterComponent implements OnInit {
     id: null,
     username: null,
     password: null,
-    firstName: null,
-    lastName: null
+    firstname: null,
+    lastname: null
   };
 
 
-  constructor(private usersService: UsersService) { }
+  constructor(private router: Router, private usersService: UsersService) {
+    this.router = router;
+  }
 
   register(user): void {
-    this.usersService.createUser(user).subscribe(newUser => console.log(newUser));
+    this.usersService
+      .createUser(user)
+      .subscribe(newUser => this.router.navigate(['projects']));
   }
 
   ngOnInit() {

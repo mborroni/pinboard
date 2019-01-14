@@ -16,7 +16,7 @@ import { Project } from 'src/app/models/project';
 
   <mat-divider></mat-divider>
 
-  <form>
+  <form (keyup.enter)="onSubmit(project)">
     <mat-form-field class="projectName">
       <mat-placeholder>Nombre</mat-placeholder>
       <input matInput [(ngModel)]="editProject.name" name="name" required>
