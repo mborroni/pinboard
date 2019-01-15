@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-01-2019 a las 18:12:10
+-- Tiempo de generación: 15-01-2019 a las 18:51:02
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -44,10 +44,8 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `name`, `description`, `dueDate`, `deletedAt`, `userId`) VALUES
-(1, 'Ejemplo', 'Esta es la descripcion del ejemplo', NULL, NULL, 1),
-(2, 'Proyecto', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ', '2019-02-28', NULL, 1),
-(3, 'DSDASDA', '', '2019-01-16', NULL, 1),
-(4, 'asdada', '', '2019-01-21', NULL, 1);
+(6, 'Un proyecto de prueba', '', '2019-01-31', NULL, 2),
+(7, 'Otro proyecto sin fecha', '', NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -69,25 +67,15 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `name`, `dueDate`, `isDone`, `deletedAt`, `projectId`) VALUES
-(1, 'Relevamiento de requisitos', '2019-01-02', 1, NULL, 2),
-(2, 'Relevamiento de información', '2019-01-04', 1, NULL, 2),
-(256, 'Especificación de software', '2019-01-07', 1, NULL, 2),
-(257, 'Planteo de funciones', '2019-01-10', 1, NULL, 2),
-(258, 'Diseño de API', '2019-01-18', 0, '0000-00-00 00:00:00', 2),
-(259, 'Diseño interfaz', '2019-01-25', 0, '0000-00-00 00:00:00', 2),
-(260, 'Programación', '2019-02-08', 0, '0000-00-00 00:00:00', 2),
-(261, 'Programación11112312', '2019-02-08', 1, NULL, 2),
-(262, 'Testeo aplicativo1111', '2019-02-13', 1, NULL, 2),
-(263, 'Implementación2222', '2019-02-20', 1, NULL, 2),
-(264, 'Testeo aplicativo', '2019-02-13', 1, NULL, 2),
-(265, 'Implementación1', '2019-02-15', 0, NULL, 2),
-(266, 'Capacitación usuarios', NULL, 0, '0000-00-00 00:00:00', 2),
-(267, 'Cuestionario sobre aplicativo', NULL, 1, '0000-00-00 00:00:00', 2),
-(268, 'Implementación de cambios', NULL, 0, '0000-00-00 00:00:00', 2),
-(270, '', NULL, 1, '0000-00-00 00:00:00', 2),
-(271, '', NULL, 0, '0000-00-00 00:00:00', 2),
-(272, '', NULL, 0, '0000-00-00 00:00:00', 2),
-(273, '', NULL, 0, '0000-00-00 00:00:00', 2);
+(1, 'Tarea 1', NULL, 1, NULL, 6),
+(2, 'Tarea 2', '2019-01-23', 0, NULL, 6),
+(3, 'Tarea 3', '2019-01-25', 0, NULL, 6),
+(4, 'Tarea 4', '2019-01-25', 0, NULL, 6),
+(5, 'Tarea 5', '2019-01-25', 0, NULL, 6),
+(6, 'Tarea 1', NULL, 0, NULL, 7),
+(7, 'Tarea 2', NULL, 0, NULL, 7),
+(8, 'Tarea 3', '2019-02-28', 1, NULL, 7),
+(9, 'Tarea 4', '2019-03-26', 0, NULL, 7);
 
 -- --------------------------------------------------------
 
@@ -108,7 +96,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`) VALUES
-(1, 'mili', 'milimili', 'milagros', 'milagros2222');
+(2, 'admin', '$2a$10$y6Be2OZGXv2yU8kvUzgNY.EjKv83hNKHSl370vKk5Zc.h.1W0MSb2', 'admin', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -142,19 +130,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=284;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
